@@ -495,3 +495,15 @@ void MainWindow::on_pushButton_Dt_clicked()
 
     }
 }
+
+void MainWindow::on_pushButton_C_clicked()
+{
+    FirstOp = "";
+    SecondOp = "";
+    MiniText = "";
+
+    OperationBool = 0;
+    DoteMarkBool = 0;
+
+    qDebug()<<"Была нажата кнопка [C]. Обнуление операндов, минитекста, меток операции и наличия точки."<<endl;
+}
