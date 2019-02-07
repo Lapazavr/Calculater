@@ -7,6 +7,7 @@ QString MiniText = ""; // Малое окно вывода полной посл
 QString FirstOp = ""; // Первый операнд
 QString SecondOp = ""; // Второй операнд
 bool OperationBool = 0; // Маяк для определения была ли прожата кнопка операции
+bool DoteMarkBool = 0;      // Маяк для определения наличия запятой в операнде
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -433,6 +434,7 @@ void MainWindow::on_pushButton_0_clicked()
     }
 
     if (OperationBool == 1){
+
         if (SecondOp == ""){
 
             SecondOp = "0";
@@ -455,5 +457,41 @@ void MainWindow::on_pushButton_0_clicked()
             qDebug()<<"SecondOp == "<<SecondOp<<endl;
             qDebug()<<"MiniText == "<<MiniText<<endl;
         }
+    }
+}
+
+void MainWindow::on_pushButton_Dt_clicked()
+{
+    if (DoteMarkBool == 0){
+
+        if (OperationBool == 0){
+
+            FirstOp += ".";
+            MiniText += ".";
+            DoteMarkBool = 1;
+
+
+            qDebug()<<"Кнопка [.] была нажата впервые в первом операнде."<<endl;
+            qDebug()<<"FirstOp == "<<FirstOp<<endl;
+            qDebug()<<"MiniText == "<<MiniText<<endl;
+
+        }
+
+        if (OperationBool == 1){
+
+            SecondOp += ".";
+            MiniText += ".";
+            DoteMarkBool = 1;
+
+
+            qDebug()<<"Кнопка [.] была нажата впервые во втором операнде."<<endl;
+            qDebug()<<"SecondOp == "<<SecondOp<<endl;
+            qDebug()<<"MiniText == "<<MiniText<<endl;
+        }
+
+    } else if (DoteMarkBool == 1){
+
+        qDebug()<<"Кнопка [.] была нажата, но точка уже есть в этом операнде"<<endl;
+
     }
 }
