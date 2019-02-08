@@ -7,7 +7,7 @@ QString MiniText = ""; // Малое окно вывода полной посл
 QString FirstOp = ""; // Первый операнд
 QString SecondOp = ""; // Второй операнд
 bool OperationBool = 0; // Маяк для определения была ли прожата кнопка операции
-bool DoteMarkBool = 0;      // Маяк для определения наличия запятой в операнде
+bool DotMarkBool = 0;  // Маяк для определения наличия запятой в операнде
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -462,13 +462,13 @@ void MainWindow::on_pushButton_0_clicked()
 
 void MainWindow::on_pushButton_Dt_clicked()
 {
-    if (DoteMarkBool == 0){
+    if (DotMarkBool == 0){
 
         if (OperationBool == 0){
 
             FirstOp += ".";
             MiniText += ".";
-            DoteMarkBool = 1;
+            DotMarkBool = 1;
 
 
             qDebug()<<"Кнопка [.] была нажата впервые в первом операнде."<<endl;
@@ -481,7 +481,7 @@ void MainWindow::on_pushButton_Dt_clicked()
 
             SecondOp += ".";
             MiniText += ".";
-            DoteMarkBool = 1;
+            DotMarkBool = 1;
 
 
             qDebug()<<"Кнопка [.] была нажата впервые во втором операнде."<<endl;
@@ -489,7 +489,7 @@ void MainWindow::on_pushButton_Dt_clicked()
             qDebug()<<"MiniText == "<<MiniText<<endl;
         }
 
-    } else if (DoteMarkBool == 1){
+    } else if (DotMarkBool == 1){
 
         qDebug()<<"Кнопка [.] была нажата, но точка уже есть в этом операнде"<<endl;
 
@@ -503,7 +503,29 @@ void MainWindow::on_pushButton_C_clicked()
     MiniText = "";
 
     OperationBool = 0;
-    DoteMarkBool = 0;
+    DotMarkBool = 0;
 
     qDebug()<<"Была нажата кнопка [C]. Обнуление операндов, минитекста, меток операции и наличия точки."<<endl;
+}
+
+void MainWindow::on_pushButton_CE_clicked()
+{
+    if (OperationBool == 0){
+
+        MiniText -= FirstOp;
+        FirstOp = "";
+
+        qDebug()<<"Была нажата кнопка [CE]. Обнуление первого операнда."<<endl;
+        qDebug()<<"FirstOp == "<<FirstOp<<endl;
+        qDebug()<<"MiniText == "<<MiniText<<endl;
+
+    } else if (OperationBool == 1){
+
+        MiniText -= SecondOp;
+        SecondOp = "";
+
+        qDebug()<<"Была нажата кнопка [CE]. Обнуление второго операнда."<<endl;
+        qDebug()<<"SecondOp == "<<SecondOp<<endl;
+        qDebug()<<"MiniText == "<<MiniText<<endl;
+    }
 }

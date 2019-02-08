@@ -3,6 +3,12 @@
 
 #include <QMainWindow>
 
+extern QString MiniText; // Малое окно вывода полной последовательности операций
+extern QString FirstOp; // Первый операнд
+extern QString SecondOp; // Второй операнд
+extern bool OperationBool; // Маяк для определения была ли прожата кнопка операции
+extern bool DotMarkBool;  // Маяк для определения наличия запятой в операнде
+
 namespace Ui {
 class MainWindow;
 }
@@ -39,6 +45,8 @@ private slots:
     void on_pushButton_Dt_clicked();
 
     void on_pushButton_C_clicked();
+
+    void on_pushButton_CE_clicked();
 
 private:
     Ui::MainWindow *ui;
